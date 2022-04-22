@@ -3,6 +3,7 @@ import CakeCom from "./components/CakeCom";
 import { store } from "./redux/store";
 import "./App.css";
 import IceCom from "./components/IceReducer";
+import UserCom from "./components/UserCom";
 
 function App() {
   return (
@@ -10,6 +11,7 @@ function App() {
       <div className="App">
         <CakeCom />
         <IceCom />
+        <UserCom />
       </div>
     </Provider>
   );
