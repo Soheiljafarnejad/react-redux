@@ -1,21 +1,15 @@
-import { connect } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { buyCake } from "../redux/cakeReducer";
 
-const CakeCom = (props) => {
+const CakeCom = () => {
+  const numOfCake = useSelector((store) => store.numOfCake);
+  const dispatch = useDispatch();
   return (
     <section className="container">
-      <h2>amount cake:{props.numOfCake}</h2>
-      <button onClick={props.buyCake}>buy cake</button>
+      <h2>amount cake:{numOfCake}</h2>
+      <button onClick={() => dispatch(buyCake())}>buy cake</button>
     </section>
   );
 };
 
-const mapStateToProps = (state) => {
-  return { numOfCake: state.numOfCake };
-};
-
-const mapDispatchToProps = (dispatch) => {
-  return { buyCake: () => dispatch(buyCake()) };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(CakeCom);
+export default CakeCom;
