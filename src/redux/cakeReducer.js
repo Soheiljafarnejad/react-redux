@@ -1,8 +1,9 @@
 const BUY_CAKE = "BUY_CAKE";
 
-export const buyCake = () => {
+export const buyCake = (value) => {
   return {
     type: BUY_CAKE,
+    payload: value,
   };
 };
 
@@ -13,7 +14,7 @@ const initState = {
 export const cakeReducer = (state = initState, action) => {
   switch (action.type) {
     case BUY_CAKE:
-      return { ...state, numOfCake: state.numOfCake - 1 };
+      return { ...state, numOfCake: state.numOfCake - action.payload };
     default:
       return state;
   }

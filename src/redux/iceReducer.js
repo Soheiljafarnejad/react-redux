@@ -1,8 +1,9 @@
 const BUY_ICE = "BUY_ICE";
 
-export const buyIce = () => {
+export const buyIce = (value) => {
   return {
     type: BUY_ICE,
+    payload: value,
   };
 };
 
@@ -13,7 +14,7 @@ const initState = {
 export const iceReducer = (state = initState, action) => {
   switch (action.type) {
     case BUY_ICE:
-      return { ...state, numOfIce: state.numOfIce - 1 };
+      return { ...state, numOfIce: state.numOfIce - action.payload };
     default:
       return state;
   }
