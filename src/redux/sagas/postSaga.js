@@ -1,6 +1,6 @@
 import axios from "axios";
 import { call, put, takeEvery } from "redux-saga/effects";
-import { fetchPostSuccess, FETCH_POST_REQUEST } from "../postReducer";
+import { fetchPostFailure, fetchPostSuccess, FETCH_POST_REQUEST } from "../postReducer";
 
 function* fetchPost(action) {
   try {
@@ -9,7 +9,7 @@ function* fetchPost(action) {
     );
     yield put(fetchPostSuccess(response.data));
   } catch (error) {
-    yield put(fetchPostSuccess(error.message));
+    yield put(fetchPostFailure(error.message));
   }
 }
 

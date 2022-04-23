@@ -2,9 +2,10 @@ export const FETCH_POST_REQUEST = "FETCH_POST_REQUEST";
 export const FETCH_POST_SUCCESS = "FETCH_POST_SUCCESS";
 export const FETCH_POST_FAILURE = "FETCH_POST_FAILURE";
 
-export const fetchPostRequest = () => {
+export const fetchPostRequest = (id) => {
   return {
     type: FETCH_POST_REQUEST,
+    payload: id,
   };
 };
 
@@ -23,19 +24,19 @@ export const fetchPostFailure = (error) => {
 };
 
 const initState = {
+  data: {},
   loading: false,
-  data: [],
-  error: "",
+  error: false,
 };
 
-export const asyncReducer = (state = initState, action) => {
+export const asyncPostReducer = (state = initState, action) => {
   switch (action.type) {
     case FETCH_POST_REQUEST:
-      return { ...state, loading: true };
+      return { ...state, loading: true, data: {}, error: false };
     case FETCH_POST_SUCCESS:
-      return { ...state, loading: false, data: action.payload };
+      return { ...state, loading: false, data: action.payload, error: false };
     case FETCH_POST_FAILURE:
-      return { ...state, loading: false, error: action.payload };
+      return { ...state, loading: false, data: {}, error: action.payload };
     default:
       return state;
   }
